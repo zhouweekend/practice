@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../css/common.css" />
+		<link rel="stylesheet" type="text/css" href="../css/diff.css" />
+		<script src="../js/jquery-1.11.3.js"></script>
+		<script src="../js/StartMove.js"></script>
+		<script src="../js/script.js"></script>
+		<script src="../js/ajax.js"></script>
+		<script src="../js/cookie.js"></script>
+	</head>
+	<body>
+		<div class="carttitle">
+			<div class="cartt1">
+				<p></p>
+				<ul>
+					<li><a href="#">收藏夹</a></li>
+					<li><a href="#">新会员注册</a>/<a href="#">登录</a></li>
+					<li><a href="#">我的帐户</a></li>
+					<li><a href="#">收藏本站</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="cartList">
+			<form name="frmcart" style="margin:0px;">
+				<table width="1000" border="0" cellspacing="0" id="tbShoppingList">
+					<tr class="carttip">
+						<td width="50" height="33">序号</td>
+						<td width="560" height="33">商品名称</td>
+						<td width="50">规格</td>
+						<td width="60">一般价</td>
+						<td width="60">No5价</td>
+						<td width="30">数量</td>
+						<td width="70">付款小计</td>
+						<td width="70">转入收藏夹</td>
+						<td width="50">删除</td>
+					</tr>
+				</table>
+				<table width="1000" border="0" cellspacing="0" id="tbShoppingcontent">
+					
+				</table>
+			</form>
+			<div class="pay">
+				应付商品金额：<span id="s2">￥</span><span id="spay1"></span>元
+			</div>
+		</div>
+		
+		<script>
+		function showf(){
+			var tbShoppingcontent = document.getElementById("tbShoppingcontent");
+			var spay1 = document.getElementById("spay1");
+				spay1.innerHTML = "0";//初始化总价为0
+				tbShoppingcontent.innerHTML="";
+			var str = document.cookie;
+			 console.log(str);
+			//console.log(str.length);
+			var arr = str.split("; ");
+			//console.log(arr);
+			for(i=0;i<arr.length;i++){
+				arrx = arr[i].split("=");
+				var zl = arrx[0];
+				//console.log(zl);
+				var jd = decodeURIComponent(arrx[1]);
+				_name = zl.charAt(0);
+				bh = zl.substr(1,zl.length-1);
+				if(_name =="g"&& parseInt(bh)==bh ){
+					var obj = eval("(" + jd + ")");
+					var sum =obj.num * parseInt(obj.price);
+					//console.log(obj.price);
+					var tr = document.createElement("tr");
+					tbShoppingcontent.appendChild(tr);
+					tr.innerHTML = "<td width='50'>"+obj.id+"</td><td width='560'>"+obj.title+"</td><td width='50'>"+obj.gui+"</td><td width='60'>"+obj.common+"</td><td width='60'>"+obj.no5+"</td><td width='30'>"+obj.num+"</td><td width='70'>"+sum+"</td><td width='70'><a href='#'>转入收藏夹</a></td><td width='70' ><a href='#' onclick='javascript:clearGoods("+obj.id+");'>删除</a></td>";
+					spay1.innerHTML = parseInt(spay1.innerHTML)+sum;//显示最终的总价值
+				}
+			}
+		}
+		showf();
+			
+			function clearGoods(id){
+				var str = getCookie("g"+id);
+				setCookie("g"+id,"",-10);
+				showf();
+				
+			}
+		
+		</script>
+		
+		
+		<div class="promotion">
+			<ul>
+				<li><a hrfe="#">Dior迪奥凝脂恒久粉饼65元</a></li>
+				<li><a hrfe="#">DMC欣兰黑里透白冻膜99元</a></li>
+				<li><a hrfe="#">DHC蝶翠诗橄榄卸妆油68元</a></li>
+				<li><a hrfe="#">LG倍瑞傲牙膏19元起</a></li>
+			</ul>
+		</div>
+		<div class="balance">
+			<div class="baleft">
+				输入兑换券帐号：
+				<input type="text" />
+				<input type="button" value="兑换商品" />
+			</div><div class="baright">
+				<p class="bar1"><a href="#" onclick='javascript:clearAll("+obj.id+");'>清空购物车</a></p>
+				<a href="../index.html"><p class="bar2"></p></a>
+				<p class="bar3"><a href="#"></a></p>
+			</div>
+		</div>
+		<div class="odds">
+			<p class="ptitle"></p>
+			<div class="con"></div>
+		</div>
+		<script>
+		function clearAll(){
+			var tbShoppingList = document.getElementById("tbShoppingList")
+			var str = document.cookie;
+				spay1.innerHTML = 0;//总价
+			if(str != ""){
+				arr = str.split("; ");
+				for(i=0;i<arr.length;i++){
+					col = arr[i].split("=")
+					_name = col[0].charAt(0);
+					if(_name == "g"){
+						setCookie(col[0],"",-10)
+					}
+				}
+			}
+			tbShoppingcontent.innerHTML ="";
+			
+		}
+			
+		</script>
+	</body>
+</html>

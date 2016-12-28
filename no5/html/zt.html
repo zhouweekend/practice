@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../css/common.css" />
+		<link rel="stylesheet" type="text/css" href="../css/diff.css" />
+		<script src="../js/jquery-1.11.3.js"></script>
+		<script src="../js/StartMove.js"></script>
+		<script src="../js/script.js"></script>
+		<script src="../js/ajax.js"></script>
+		<style>
+
+			.box>div{padding-left:87px;}
+		</style>
+	</head>
+	<body>
+				<!--top最上部开始-->
+<div class="top">
+    <div class="htop">
+        <div class="htleft">
+            晚上好，欢迎光临No5时尚广场。<a href="#">[登录]</a><a href="#"> [免费注册]</a>
+        </div>
+        <ul>
+            <li id="acc">
+                <a href="#">我的账户</a>
+                <span></span>
+                <div id="acclist">
+					<p><a href="#">我的订单</a></p>
+					<p><a href="#">我的积分</a></p>
+					<p><a href="#">我的优惠券</a></p>
+					<p><a href="#">我的收藏</a></p>
+				</div>
+            </li>
+            <img src="../images/shu.jpg" />
+            <li><a href="#">收藏本站</a></li>
+            <img src="../images/shu.jpg" />
+            <li><a href="#">帮助中心</a></li>
+            <span class="phone"></span>
+            <li class="tel">
+                400-883-6655
+            </li>
+        </ul>
+    </div>
+</div>
+<!--top最上部结束-->
+<script>
+	var acc=document.getElementById("acc");
+	acc.onmouseover=function(){
+		var acc=document.getElementById("acc");
+		acclist.style.display="block";
+		acclist.style.border="1px solid #ccc";
+		acclist.style.borderTop="none";
+		acc.style.border="1px solid #ccc";
+		acc.style.borderTop="none";
+		acc.style.borderBottom="1px solid #fff";
+					
+	}
+	acc.onmouseout=function(){
+		var acc=document.getElementById("acc");
+		acclist.style.display="none";
+		acc.style.border="none";			
+	}
+</script>
+<!--logo部分-->
+<div class="logo">
+	<div class="logoin">
+    	<img src="../images/logo.jpg" />
+        <div class="search">
+        	<div class="sinput"><input type="text" value="保湿" id="txt"/><input type="button" value="搜索" id="btn"/></div>
+            <p>热门搜索： <a href="#" id="sa1">防晒霜</a>  <a href="#">补水保湿</a>  <a href="#" id="sa2">水宝宝</a>  <a href="#">夏季美白</a>  <a href="#">雅诗兰黛</a>  <a href="#">魔漫面膜</a>  <a href="#">专柜小样</a></p>
+        </div>
+        <div id="buy">
+        	<div id="buycar"><a href="#">购物车</a><a id="cartnum">0</a><a href="#">件</a></div>
+        	<div id="buycon"><p>购物车中还没有商品，赶紧选购吧！</p></div>
+        </div>
+    </div>
+</div>
+<!--logo部分结束-->
+<script>
+	var buy=document.getElementById("buy");
+	var buycar=document.getElementById("buycar");
+	buy.onmouseover=function(){
+		buycar.style.background="url(../images/detail.gif) no-repeat 0 -75px";
+		var buycon=document.getElementById("buycon");
+		buycon.style.display="block";
+		buycon.style.zIndex=1;			
+	}
+	buy.onmouseout=function(){
+		buycar.style.background="url(../images/detail.gif) no-repeat 0 -30px";
+		var buycon=document.getElementById("buycon");
+		buycon.style.display="none";	
+		buycar.style.border="none";		
+	}
+	
+	var str = document.cookie;
+	var num=0;
+	var arr = str.split("; ");
+	for(i=0;i<arr.length;i++){
+		arrx = arr[i].split("=");
+		var zl = arrx[0];
+		var jd = decodeURIComponent(arrx[1]);
+		_name = zl.charAt(0);
+		bh = zl.substr(1,zl.length-1);
+		if(_name =="g"&& parseInt(bh)==bh ){
+			var obj = eval("(" + jd + ")");
+			num +=obj.num;
+		}
+	}
+	var cartnum=document.getElementById("cartnum");
+	cartnum.innerHTML=num;
+</script>
+<!--nav部分-->
+<div class="nav">
+	<div class="navCon w1200">
+		<div class="navCon-cate fl navCon_on">
+			<div class="navCon-cate-title"><a href="#">全部商品分类</a></div>
+			<div class="cateMenu hide">
+				<ul>
+					<li>
+						<div class="cate-tag"><strong><a href="#">面部护理</a><span></span></strong>
+							<div class="listModel">
+								<p><a href="#">洗面奶</a><a href="#">爽肤液</a><a href="#">T区护理</a><a href="#">眼霜</a></p>
+								<p><a href="#">面膜精华</a><a href="#">防晒</a><a href="#">乳液</a><a href="#">爽肤水</a></p>
+								<p><a href="#">美丽日志</a><a href="#">BB霜</a><a href="#">护手霜</a><a href="#">洗面奶</a></p>
+							</div>
+						</div>
+						<div class="list-item hide">
+							<ul class="itemleft">
+								<dl>
+									<dt>卸妆步骤</dt>
+									<dd><a href="#">卸妆油</a><a href="#">卸妆乳</a><a href="#">卸妆霜</a><a href="#">眼唇卸妆</a><a href="#">卸妆水</a><a href="#">卸妆啫喱洁</a><a href="#">洁肤卸妆2合1</a><a href="#">洁面乳</a><a href="#">洁面啫喱</a><a href="#">洁面慕斯</a><a href="#">洁面皂洁</a><a href="#">面粉</a><a href="#">面部去角质</a><a href="#">面贴膜</a><a href="#">水洗面膜</a><a href="#">水洗面膜</a><a href="#">免洗面膜</a><a href="#">撕拉面膜</a><a href="#">面膜粉</a><a href="#">按摩膏</a></dd>
+								</dl>
+                                <dl>
+									<dt>卸妆步骤</dt>
+									<dd><a href="#">卸妆油</a><a href="#">卸妆乳</a><a href="#">卸妆霜</a><a href="#">眼唇卸妆</a><a href="#">卸妆水</a><a href="#">卸妆啫喱洁</a><a href="#">洁肤卸妆2合1</a><a href="#">洁面乳</a><a href="#">洁面啫喱</a><a href="#">洁面慕斯</a><a href="#">洁面皂洁</a><a href="#">面粉</a><a href="#">面部去角质</a><a href="#">面贴膜</a><a href="#">水洗面膜</a><a href="#">水洗面膜</a><a href="#">免洗面膜</a><a href="#">撕拉面膜</a><a href="#">面膜粉</a><a href="#">按摩膏</a></dd>
+								</dl>
+                                <dl>
+									<dt>卸妆步骤</dt>
+									<dd><a href="#">卸妆油</a><a href="#">卸妆乳</a><a href="#">卸妆霜</a><a href="#">眼唇卸妆</a><a href="#">卸妆水</a><a href="#">卸妆啫喱洁</a><a href="#">洁肤卸妆2合1</a><a href="#">洁面乳</a><a href="#">洁面啫喱</a><a href="#">洁面慕斯</a><a href="#">洁面皂洁</a><a href="#">面粉</a><a href="#">面部去角质</a><a href="#">面贴膜</a><a href="#">水洗面膜</a><a href="#">水洗面膜</a><a href="#">免洗面膜</a><a href="#">撕拉面膜</a><a href="#">面膜粉</a><a href="#">按摩膏</a></dd>
+								</dl>
+                                <dl>
+									<dt>卸妆步骤</dt>
+									<dd><a href="#">卸妆油</a><a href="#">卸妆乳</a><a href="#">卸妆霜</a><a href="#">眼唇卸妆</a><a href="#">卸妆水</a><a href="#">卸妆啫喱洁</a><a href="#">洁肤卸妆2合1</a><a href="#">洁面乳</a><a href="#">洁面啫喱</a><a href="#">洁面慕斯</a><a href="#">洁面皂洁</a><a href="#">面粉</a><a href="#">面部去角质</a><a href="#">面贴膜</a><a href="#">水洗面膜</a><a href="#">水洗面膜</a><a href="#">免洗面膜</a><a href="#">撕拉面膜</a><a href="#">面膜粉</a><a href="#">按摩膏</a></dd>
+								</dl>
+                                <dl>
+									<dt>卸妆步骤</dt>
+									<dd><a href="#">卸妆油</a><a href="#">卸妆乳</a><a href="#">卸妆霜</a><a href="#">眼唇卸妆</a><a href="#">卸妆水</a><a href="#">卸妆啫喱洁</a><a href="#">洁肤卸妆2合1</a><a href="#">洁面乳</a><a href="#">洁面啫喱</a><a href="#">洁面慕斯</a><a href="#">洁面皂洁</a><a href="#">面粉</a><a href="#">面部去角质</a><a href="#">面贴膜</a><a href="#">水洗面膜</a><a href="#">水洗面膜</a><a href="#">免洗面膜</a><a href="#">撕拉面膜</a><a href="#">面膜粉</a><a href="#">按摩膏</a></dd>
+								</dl>
+								<div class="fn-clear"></div>
+							</ul>
+							<ul class="itemright">
+								<dl>
+									<dt>推荐品牌</dt>
+								</dl>
+								<div class="news-list">
+									<p><a href="#">兰蔻</a><a href="#">雅诗兰黛</a><a href="#">倩碧</a><a href="#">娇韵诗</a><a href="#">迪奥</a><a href="#">碧欧泉</a><a href="#">兰芝</a><a href="#">科颜氏</a><a href="#">freshSK-Ⅱ</a><a href="#">兰蔻</a><a href="#">雅诗兰黛</a><a href="#">倩碧</a><a href="#">娇韵诗</a><a href="#">迪奥</a><a href="#">碧欧泉</a><a href="#">兰芝</a><a href="#">科颜氏</a><a href="#">freshSK-Ⅱ</a><a href="#">兰蔻</a><a href="#">雅诗兰黛</a><a href="#">倩碧</a><a href="#">娇韵诗</a><a href="#">迪奥</a><a href="#">碧欧泉</a><a href="#">兰芝</a><a href="#">科颜氏</a><a href="#">freshSK-Ⅱ</a><a href="#">兰蔻</a></p>
+								</div>
+								<dl>
+									
+                                    <img src="../images/d1.jpg">
+								</dl>
+							</ul>
+						</div>
+					</li>
+					<li>
+						<div class="cate-tag"><strong><a href="#">彩妆</a><span></span></strong>
+							<div class="listModel">
+								<p><a href="#">BB霜</a><a href="#">粉底</a><a href="#">液妆</a><a href="#">前乳</a></p>
+								<p><a href="#">隔离</a><a href="#">唇膏</a><a href="#">睫毛膏</a><a href="#">眼线</a></p>
+								<p><a href="#">指甲油</a><a href="#">眼线膏</a><a href="#">眼线液</a></p>
+							</div>
+						</div>
+						<div class="list-item hide">
+							<ul class="itemleft">
+								<dl>
+									<dt>卸妆步骤</dt>
+									<dd><a href="#">卸妆油</a><a href="#">卸妆乳</a><a href="#">卸妆霜</a><a href="#">眼唇卸妆</a><a href="#">卸妆水</a><a href="#">卸妆啫喱洁</a><a href="#">洁肤卸妆2合1</a><a href="#">洁面乳</a><a href="#">洁面啫喱</a><a href="#">洁面慕斯</a><a href="#">洁面皂洁</a><a href="#">面粉</a><a href="#">面部去角质</a><a href="#">面贴膜</a><a href="#">水洗面膜</a><a href="#">水洗面膜</a><a href="#">免洗面膜</a><a href="#">撕拉面膜</a><a href="#">面膜粉</a><a href="#">按摩膏</a></dd>
+								</dl>
+                                <dl>
+									<dt>卸妆步骤</dt>
+									<dd><a href="#">卸妆油</a><a href="#">卸妆乳</a><a href="#">卸妆霜</a><a href="#">眼唇卸妆</a><a href="#">卸妆水</a><a href="#">卸妆啫喱洁</a><a href="#">洁肤卸妆2合1</a><a href="#">洁面乳</a><a href="#">洁面啫喱</a><a href="#">洁面慕斯</a><a href="#">洁面皂洁</a><a href="#">面粉</a><a href="#">面部去角质</a><a href="#">面贴膜</a><a href="#">水洗面膜</a><a href="#">水洗面膜</a><a href="#">免洗面膜</a><a href="#">撕拉面膜</a><a href="#">面膜粉</a><a href="#">按摩膏</a></dd>
+								</dl>
+                                <dl>
+									<dt>卸妆步骤</dt>
+									<dd><a href="#">卸妆油</a><a href="#">卸妆乳</a><a href="#">卸妆霜</a><a href="#">眼唇卸妆</a><a href="#">卸妆水</a><a href="#">卸妆啫喱洁</a><a href="#">洁肤卸妆2合1</a><a href="#">洁面乳</a><a href="#">洁面啫喱</a><a href="#">洁面慕斯</a><a href="#">洁面皂洁</a><a href="#">面粉</a><a href="#">面部去角质</a><a href="#">面贴膜</a><a href="#">水洗面膜</a><a href="#">水洗面膜</a><a href="#">免洗面膜</a><a href="#">撕拉面膜</a><a href="#">面膜粉</a><a href="#">按摩膏</a></dd>
+								</dl>
+                                <dl>
+									<dt>卸妆步骤</dt>
+									<dd><a href="#">卸妆油</a><a href="#">卸妆乳</a><a href="#">卸妆霜</a><a href="#">眼唇卸妆</a><a href="#">卸妆水</a><a href="#">卸妆啫喱洁</a><a href="#">洁肤卸妆2合1</a><a href="#">洁面乳</a><a href="#">洁面啫喱</a><a href="#">洁面慕斯</a><a href="#">洁面皂洁</a><a href="#">面粉</a><a href="#">面部去角质</a><a href="#">面贴膜</a><a href="#">水洗面膜</a><a href="#">水洗面膜</a><a href="#">免洗面膜</a><a href="#">撕拉面膜</a><a href="#">面膜粉</a><a href="#">按摩膏</a></dd>
+								</dl>
+								<div class="fn-clear"></div>
+							</ul>
+							<ul class="itemright">
+								<dl>
+									<dt>推荐品牌</dt>
+								</dl>
+								<div class="news-list">
+									<p><a href="#">兰蔻</a><a href="#">雅诗兰黛</a><a href="#">倩碧</a><a href="#">娇韵诗</a><a href="#">迪奥</a><a href="#">碧欧泉</a><a href="#">兰芝</a><a href="#">科颜氏</a><a href="#">freshSK-Ⅱ</a><a href="#">兰蔻</a><a href="#">雅诗兰黛</a><a href="#">倩碧</a><a href="#">娇韵诗</a><a href="#">迪奥</a><a href="#">碧欧泉</a><a href="#">兰芝</a><a href="#">科颜氏</a><a href="#">freshSK-Ⅱ</a><a href="#">兰蔻</a><a href="#">雅诗兰黛</a><a href="#">倩碧</a><a href="#">娇韵诗</a><a href="#">迪奥</a><a href="#">碧欧泉</a><a href="#">兰芝</a><a href="#">科颜氏</a><a href="#">freshSK-Ⅱ</a><a href="#">兰蔻</a></p>
+								</div>
+								<dl>
+									
+                                    <img src="../images/d2.jpg">
+								</dl>
+							</ul>
+						</div>
+					</li>
+					<li>
+						<div class="cate-tag"><strong><a href="#">香氛</a><span></span></strong>
+							<div class="listModel">
+								<p><a href="#">女士香水</a><a href="#">男士香水</a><a href="#">香水套装</a></p>
+								<p><a href="#">中性香水</a><a href="#">限量版</a><a href="#">沐浴露</a></p>
+							</div>
+						</div>
+						<div class="list-item hide">
+							<ul class="itemleft">
+								<dl>
+									<dt>卸妆步骤</dt>
+									<dd><a href="#">卸妆油</a><a href="#">卸妆乳</a><a href="#">卸妆霜</a><a href="#">眼唇卸妆</a><a href="#">卸妆水</a><a href="#">卸妆啫喱洁</a><a href="#">洁肤卸妆2合1</a><a href="#">洁面乳</a><a href="#">洁面啫喱</a><a href="#">洁面慕斯</a><a href="#">洁面皂洁</a><a href="#">面粉</a><a href="#">面部去角质</a><a href="#">面贴膜</a><a href="#">水洗面膜</a><a href="#">水洗面膜</a><a href="#">免洗面膜</a><a href="#">撕拉面膜</a><a href="#">面膜粉</a><a href="#">按摩膏</a></dd>
+								</dl>
+                                <dl>
+									<dt>卸妆步骤</dt>
+									<dd><a href="#">卸妆油</a><a href="#">卸妆乳</a><a href="#">卸妆霜</a><a href="#">眼唇卸妆</a><a href="#">卸妆水</a><a href="#">卸妆啫喱洁</a><a href="#">洁肤卸妆2合1</a><a href="#">洁面乳</a><a href="#">洁面啫喱</a><a href="#">洁面慕斯</a><a href="#">洁面皂洁</a><a href="#">面粉</a><a href="#">面部去角质</a><a href="#">面贴膜</a><a href="#">水洗面膜</a><a href="#">水洗面膜</a><a href="#">免洗面膜</a><a href="#">撕拉面膜</a><a href="#">面膜粉</a><a href="#">按摩膏</a></dd>
+								</dl>
+                                <dl>
+									<dt>卸妆步骤</dt>
+									<dd><a href="#">卸妆油</a><a href="#">卸妆乳</a><a href="#">卸妆霜</a><a href="#">眼唇卸妆</a><a href="#">卸妆水</a><a href="#">卸妆啫喱洁</a><a href="#">洁肤卸妆2合1</a><a href="#">洁面乳</a><a href="#">洁面啫喱</a><a href="#">洁面慕斯</a><a href="#">洁面皂洁</a><a href="#">面粉</a><a href="#">面部去角质</a><a href="#">面贴膜</a><a href="#">水洗面膜</a><a href="#">水洗面膜</a><a href="#">免洗面膜</a><a href="#">撕拉面膜</a><a href="#">面膜粉</a><a href="#">按摩膏</a></dd>
+								</dl>
+                                <dl>
+									<dt>卸妆步骤</dt>
+									<dd><a href="#">卸妆油</a><a href="#">卸妆乳</a><a href="#">卸妆霜</a><a href="#">眼唇卸妆</a><a href="#">卸妆水</a><a href="#">卸妆啫喱洁</a><a href="#">洁肤卸妆2合1</a><a href="#">洁面乳</a><a href="#">洁面啫喱</a><a href="#">洁面慕斯</a><a href="#">洁面皂洁</a><a href="#">面粉</a><a href="#">面部去角质</a><a href="#">面贴膜</a><a href="#">水洗面膜</a><a href="#">水洗面膜</a><a href="#">免洗面膜</a><a href="#">撕拉面膜</a><a href="#">面膜粉</a><a href="#">按摩膏</a></dd>
+								</dl>
+								<div class="fn-clear"></div>
+							</ul>
+							<ul class="itemright">
+								<dl>
+									<dt>推荐品牌</dt>
+								</dl>
+								<div class="news-list">
+									<p><a href="#">兰蔻</a><a href="#">雅诗兰黛</a><a href="#">倩碧</a><a href="#">娇韵诗</a><a href="#">迪奥</a><a href="#">碧欧泉</a><a href="#">兰芝</a><a href="#">科颜氏</a><a href="#">freshSK-Ⅱ</a><a href="#">兰蔻</a><a href="#">雅诗兰黛</a><a href="#">倩碧</a><a href="#">娇韵诗</a><a href="#">迪奥</a><a href="#">碧欧泉</a><a href="#">兰芝</a><a href="#">科颜氏</a><a href="#">freshSK-Ⅱ</a><a href="#">兰蔻</a><a href="#">雅诗兰黛</a><a href="#">倩碧</a><a href="#">娇韵诗</a><a href="#">迪奥</a><a href="#">碧欧泉</a><a href="#">兰芝</a><a href="#">科颜氏</a><a href="#">freshSK-Ⅱ</a><a href="#">兰蔻</a></p>
+								</div>
+								<dl>
+									
+                                    <img src="../images/d3.jpg">
+								</dl>
+							</ul>
+						</div>
+					</li>
+					<li>
+                    <li>
+						<div class="cate-tag"><strong><a href="#">身体护理</a><span></span></strong>
+							<div class="listModel">
+								<p><a href="#">美胸霜</a><a href="#">脱毛膏</a><a href="#">瘦身霜</a></p>
+								<p><a href="#">身体乳</a><a href="#">沐浴露</a><a href="#">香皂</a></p>
+							</div>
+						</div>
+						<div class="list-item hide">
+							<ul class="itemleft">
+								<dl>
+									<dt>卸妆步骤</dt>
+									<dd><a href="#">卸妆油</a><a href="#">卸妆乳</a><a href="#">卸妆霜</a><a href="#">眼唇卸妆</a><a href="#">卸妆水</a><a href="#">卸妆啫喱洁</a><a href="#">洁肤卸妆2合1</a><a href="#">洁面乳</a><a href="#">洁面啫喱</a><a href="#">洁面慕斯</a><a href="#">洁面皂洁</a><a href="#">面粉</a><a href="#">面部去角质</a><a href="#">面贴膜</a><a href="#">水洗面膜</a><a href="#">水洗面膜</a><a href="#">免洗面膜</a><a href="#">撕拉面膜</a><a href="#">面膜粉</a><a href="#">按摩膏</a></dd>
+								</dl>
+                                <dl>
+									<dt>卸妆步骤</dt>
+									<dd><a href="#">卸妆油</a><a href="#">卸妆乳</a><a href="#">卸妆霜</a><a href="#">眼唇卸妆</a><a href="#">卸妆水</a><a href="#">卸妆啫喱洁</a><a href="#">洁肤卸妆2合1</a><a href="#">洁面乳</a><a href="#">洁面啫喱</a><a href="#">洁面慕斯</a><a href="#">洁面皂洁</a><a href="#">面粉</a><a href="#">面部去角质</a><a href="#">面贴膜</a><a href="#">水洗面膜</a><a href="#">水洗面膜</a><a href="#">免洗面膜</a><a href="#">撕拉面膜</a><a href="#">面膜粉</a><a href="#">按摩膏</a></dd>
+								</dl>
+                                <dl>
+									<dt>卸妆步骤</dt>
+									<dd><a href="#">卸妆油</a><a href="#">卸妆乳</a><a href="#">卸妆霜</a><a href="#">眼唇卸妆</a><a href="#">卸妆水</a><a href="#">卸妆啫喱洁</a><a href="#">洁肤卸妆2合1</a><a href="#">洁面乳</a><a href="#">洁面啫喱</a><a href="#">洁面慕斯</a><a href="#">洁面皂洁</a><a href="#">面粉</a><a href="#">面部去角质</a><a href="#">面贴膜</a><a href="#">水洗面膜</a><a href="#">水洗面膜</a><a href="#">免洗面膜</a><a href="#">撕拉面膜</a><a href="#">面膜粉</a><a href="#">按摩膏</a></dd>
+								</dl>
+                                <dl>
+									<dt>卸妆步骤</dt>
+									<dd><a href="#">卸妆油</a><a href="#">卸妆乳</a><a href="#">卸妆霜</a><a href="#">眼唇卸妆</a><a href="#">卸妆水</a><a href="#">卸妆啫喱洁</a><a href="#">洁肤卸妆2合1</a><a href="#">洁面乳</a><a href="#">洁面啫喱</a><a href="#">洁面慕斯</a><a href="#">洁面皂洁</a><a href="#">面粉</a><a href="#">面部去角质</a><a href="#">面贴膜</a><a href="#">水洗面膜</a><a href="#">水洗面膜</a><a href="#">免洗面膜</a><a href="#">撕拉面膜</a><a href="#">面膜粉</a><a href="#">按摩膏</a></dd>
+								</dl>
+								<div class="fn-clear"></div>
+							</ul>
+							<ul class="itemright">
+								<dl>
+									<dt>推荐品牌</dt>
+								</dl>
+								<div class="news-list">
+									<p><a href="#">兰蔻</a><a href="#">雅诗兰黛</a><a href="#">倩碧</a><a href="#">娇韵诗</a><a href="#">迪奥</a><a href="#">碧欧泉</a><a href="#">兰芝</a><a href="#">科颜氏</a><a href="#">freshSK-Ⅱ</a><a href="#">兰蔻</a><a href="#">雅诗兰黛</a><a href="#">倩碧</a><a href="#">娇韵诗</a><a href="#">迪奥</a><a href="#">碧欧泉</a><a href="#">兰芝</a><a href="#">科颜氏</a><a href="#">freshSK-Ⅱ</a><a href="#">兰蔻</a><a href="#">雅诗兰黛</a><a href="#">倩碧</a><a href="#">娇韵诗</a><a href="#">迪奥</a><a href="#">碧欧泉</a><a href="#">兰芝</a><a href="#">科颜氏</a><a href="#">freshSK-Ⅱ</a><a href="#">兰蔻</a></p>
+								</div>
+								<dl>
+									
+                                    <img src="../images/d4.jpg">
+								</dl>
+							</ul>
+						</div>
+					</li>
+                    <li>
+						<div class="cate-tag"><strong><a href="#">头发护理</a><span></span></strong>
+							<div class="listModel">
+								<p><a href="#">染发</a><a href="#">洗发水</a><a href="#">护发素</a></p>
+								<p><a href="#">修护</a><a href="#">精华</a><a href="#">防脱发</a></p>
+							</div>
+						</div>
+						<div class="list-item hide">
+							<ul class="itemleft">
+								<dl>
+									<dt>卸妆步骤</dt>
+									<dd><a href="#">卸妆油</a><a href="#">卸妆乳</a><a href="#">卸妆霜</a><a href="#">眼唇卸妆</a><a href="#">卸妆水</a><a href="#">卸妆啫喱洁</a><a href="#">洁肤卸妆2合1</a><a href="#">洁面乳</a><a href="#">洁面啫喱</a><a href="#">洁面慕斯</a><a href="#">洁面皂洁</a><a href="#">面粉</a><a href="#">面部去角质</a><a href="#">面贴膜</a><a href="#">水洗面膜</a><a href="#">水洗面膜</a><a href="#">免洗面膜</a><a href="#">撕拉面膜</a><a href="#">面膜粉</a><a href="#">按摩膏</a></dd>
+								</dl>
+                                <dl>
+									<dt>卸妆步骤</dt>
+									<dd><a href="#">卸妆油</a><a href="#">卸妆乳</a><a href="#">卸妆霜</a><a href="#">眼唇卸妆</a><a href="#">卸妆水</a><a href="#">卸妆啫喱洁</a><a href="#">洁肤卸妆2合1</a><a href="#">洁面乳</a><a href="#">洁面啫喱</a><a href="#">洁面慕斯</a><a href="#">洁面皂洁</a><a href="#">面粉</a><a href="#">面部去角质</a><a href="#">面贴膜</a><a href="#">水洗面膜</a><a href="#">水洗面膜</a><a href="#">免洗面膜</a><a href="#">撕拉面膜</a><a href="#">面膜粉</a><a href="#">按摩膏</a></dd>
+								</dl>
+                                <dl>
+									<dt>卸妆步骤</dt>
+									<dd><a href="#">卸妆油</a><a href="#">卸妆乳</a><a href="#">卸妆霜</a><a href="#">眼唇卸妆</a><a href="#">卸妆水</a><a href="#">卸妆啫喱洁</a><a href="#">洁肤卸妆2合1</a><a href="#">洁面乳</a><a href="#">洁面啫喱</a><a href="#">洁面慕斯</a><a href="#">洁面皂洁</a><a href="#">面粉</a><a href="#">面部去角质</a><a href="#">面贴膜</a><a href="#">水洗面膜</a><a href="#">水洗面膜</a><a href="#">免洗面膜</a><a href="#">撕拉面膜</a><a href="#">面膜粉</a><a href="#">按摩膏</a></dd>
+								</dl>
+                                <dl>
+									<dt>卸妆步骤</dt>
+									<dd><a href="#">卸妆油</a><a href="#">卸妆乳</a><a href="#">卸妆霜</a><a href="#">眼唇卸妆</a><a href="#">卸妆水</a><a href="#">卸妆啫喱洁</a><a href="#">洁肤卸妆2合1</a><a href="#">洁面乳</a><a href="#">洁面啫喱</a><a href="#">洁面慕斯</a><a href="#">洁面皂洁</a><a href="#">面粉</a><a href="#">面部去角质</a><a href="#">面贴膜</a><a href="#">水洗面膜</a><a href="#">水洗面膜</a><a href="#">免洗面膜</a><a href="#">撕拉面膜</a><a href="#">面膜粉</a><a href="#">按摩膏</a></dd>
+								</dl>
+								<div class="fn-clear"></div>
+							</ul>
+							<ul class="itemright">
+								<dl>
+									<dt>推荐品牌</dt>
+								</dl>
+								<div class="news-list">
+									<p><a href="#">兰蔻</a><a href="#">雅诗兰黛</a><a href="#">倩碧</a><a href="#">娇韵诗</a><a href="#">迪奥</a><a href="#">碧欧泉</a><a href="#">兰芝</a><a href="#">科颜氏</a><a href="#">freshSK-Ⅱ</a><a href="#">兰蔻</a><a href="#">雅诗兰黛</a><a href="#">倩碧</a><a href="#">娇韵诗</a><a href="#">迪奥</a><a href="#">碧欧泉</a><a href="#">兰芝</a><a href="#">科颜氏</a><a href="#">freshSK-Ⅱ</a><a href="#">兰蔻</a><a href="#">雅诗兰黛</a><a href="#">倩碧</a><a href="#">娇韵诗</a><a href="#">迪奥</a><a href="#">碧欧泉</a><a href="#">兰芝</a><a href="#">科颜氏</a><a href="#">freshSK-Ⅱ</a><a href="#">兰蔻</a></p>
+								</div>
+								<dl>
+									
+                                    <img src="../images/d5.jpg">
+								</dl>
+							</ul>
+						</div>
+					</li>
+					<li>
+					<li>
+						<div class="cate-tag"><strong><a href="#">男士专区</a><span></span></strong>
+							<div class="listModel">
+								<p><a href="#">面部护肤</a><a href="#">男士防晒</a><a href="#">剃须护理</a></p>
+                                <p><a href="#">洗发护发</a><a href="#">沐浴止汗</a><a href="#">男士精品</a></p>
+							</div>
+						</div>
+						<div class="list-item hide">
+							<ul class="itemleft">
+								<dl>
+									<dt>卸妆步骤</dt>
+									<dd><a href="#">卸妆油</a><a href="#">卸妆乳</a><a href="#">卸妆霜</a><a href="#">眼唇卸妆</a><a href="#">卸妆水</a><a href="#">卸妆啫喱洁</a><a href="#">洁肤卸妆2合1</a><a href="#">洁面乳</a><a href="#">洁面啫喱</a><a href="#">洁面慕斯</a><a href="#">洁面皂洁</a><a href="#">面粉</a><a href="#">面部去角质</a><a href="#">面贴膜</a><a href="#">水洗面膜</a><a href="#">水洗面膜</a><a href="#">免洗面膜</a><a href="#">撕拉面膜</a><a href="#">面膜粉</a><a href="#">按摩膏</a></dd>
+								</dl>
+                                <dl>
+									<dt>卸妆步骤</dt>
+									<dd><a href="#">卸妆油</a><a href="#">卸妆乳</a><a href="#">卸妆霜</a><a href="#">眼唇卸妆</a><a href="#">卸妆水</a><a href="#">卸妆啫喱洁</a><a href="#">洁肤卸妆2合1</a><a href="#">洁面乳</a><a href="#">洁面啫喱</a><a href="#">洁面慕斯</a><a href="#">洁面皂洁</a><a href="#">面粉</a><a href="#">面部去角质</a><a href="#">面贴膜</a><a href="#">水洗面膜</a><a href="#">水洗面膜</a><a href="#">免洗面膜</a><a href="#">撕拉面膜</a><a href="#">面膜粉</a><a href="#">按摩膏</a></dd>
+								</dl>
+                                <dl>
+									<dt>卸妆步骤</dt>
+									<dd><a href="#">卸妆油</a><a href="#">卸妆乳</a><a href="#">卸妆霜</a><a href="#">眼唇卸妆</a><a href="#">卸妆水</a><a href="#">卸妆啫喱洁</a><a href="#">洁肤卸妆2合1</a><a href="#">洁面乳</a><a href="#">洁面啫喱</a><a href="#">洁面慕斯</a><a href="#">洁面皂洁</a><a href="#">面粉</a><a href="#">面部去角质</a><a href="#">面贴膜</a><a href="#">水洗面膜</a><a href="#">水洗面膜</a><a href="#">免洗面膜</a><a href="#">撕拉面膜</a><a href="#">面膜粉</a><a href="#">按摩膏</a></dd>
+								</dl>
+                                <dl>
+									<dt>卸妆步骤</dt>
+									<dd><a href="#">卸妆油</a><a href="#">卸妆乳</a><a href="#">卸妆霜</a><a href="#">眼唇卸妆</a><a href="#">卸妆水</a><a href="#">卸妆啫喱洁</a><a href="#">洁肤卸妆2合1</a><a href="#">洁面乳</a><a href="#">洁面啫喱</a><a href="#">洁面慕斯</a><a href="#">洁面皂洁</a><a href="#">面粉</a><a href="#">面部去角质</a><a href="#">面贴膜</a><a href="#">水洗面膜</a><a href="#">水洗面膜</a><a href="#">免洗面膜</a><a href="#">撕拉面膜</a><a href="#">面膜粉</a><a href="#">按摩膏</a></dd>
+								</dl>
+								<div class="fn-clear"></div>
+							</ul>
+							<ul class="itemright">
+                            	<dl>
+									<dt>推荐品牌</dt>
+								</dl>
+								<div class="news-list">
+									<p><a href="#">兰蔻</a><a href="#">雅诗兰黛</a><a href="#">倩碧</a><a href="#">娇韵诗</a><a href="#">迪奥</a><a href="#">碧欧泉</a><a href="#">兰芝</a><a href="#">科颜氏</a><a href="#">freshSK-Ⅱ</a><a href="#">兰蔻</a><a href="#">雅诗兰黛</a><a href="#">倩碧</a><a href="#">娇韵诗</a><a href="#">迪奥</a><a href="#">碧欧泉</a><a href="#">兰芝</a><a href="#">科颜氏</a><a href="#">freshSK-Ⅱ</a><a href="#">兰蔻</a><a href="#">雅诗兰黛</a><a href="#">倩碧</a><a href="#">娇韵诗</a><a href="#">迪奥</a><a href="#">碧欧泉</a><a href="#">兰芝</a><a href="#">科颜氏</a><a href="#">freshSK-Ⅱ</a><a href="#">兰蔻</a></p>
+								</div>
+								<dl>
+									
+                                    <img src="../images/d6.jpg">
+								</dl>
+							</ul>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+		
+		<div class="navCon-menu fl">
+			<ul>
+        	<li><a href="#"> 首页</a></li>
+            <li><a href="#"> 超值小样</a></li>
+            <li><a href="#"> 明星推荐</a></li>
+            <li><a href="#"> 最新活动</a></li>
+            <li><a href="#"> 新品上架</a></li>
+            <li class="color"><a href="#"> 本周特价</a></li>
+            <li class="noborder"><a href="#"> 品牌库</a></li>
+        </ul>
+		</div>
+		
+	</div>
+</div>
+<!--nav部分结束-->
+<script>
+	$(".cateMenu").mouseleave(function(){
+		$(".cateMenu").css("display","none");
+	})
+</script>
+<div class="box">
+<div style="background:url(../images/bg_01.jpg) center no-repeat; text-align:center;height:578px;"><div class="box"><img src="../images/1.jpg" id="top"></div></div>
+<div style="background:url(../images/bg_02.jpg) center no-repeat; text-align:center;height:323px;"><div class="box"><img src="../images/2.jpg"></div></div>
+<div style="background:url(../images/bg_03.jpg) center no-repeat; text-align:center;height:217px;"><div class="box"><img src="../images/3.jpg"></div></div>
+<div style="background:url(../images/bg_04.jpg) center no-repeat; text-align:center;height:153px;"><div class="box"><a class="a-block" target="_blank" href="#"><img src="../images/4.jpg" id="hflh"></a></div></div>
+<div style="background:url(../images/bg_05.jpg) center no-repeat; text-align:center;height:704px;">
+	<div class="box">
+   	  <a class="a-block" target="_blank" href="#"><img src="../images/5_01.jpg"></a>
+      <a class="a-block" target="_blank" href="#"><img src="../images/5_02.jpg"></a>
+      <a class="a-block" target="_blank" href="#"><img src="../images/5_03.jpg"></a>
+      <a class="a-block" target="_blank" href="#"><img src="../images/5_04.jpg"></a>
+    </div>
+</div>
+<div style="background:url(../images/bg_06.jpg) center no-repeat; text-align:center;height:692px;">
+	<div class="box">
+   	  <a class="a-block" target="_blank" href="#"><img src="../images/6_01.jpg"></a>
+      <a class="a-block" target="_blank" href="#"><img src="../images/6_02.jpg"></a>
+      <a class="a-block" target="_blank" href="#"><img src="../images/6_03.jpg"></a>
+      <a class="a-block" target="_blank" href="#"><img src="../images/6_04.jpg"></a>
+    </div>
+</div>
+<div style="background:url(../images/bg_07.jpg) center no-repeat; text-align:center;height:747px;">
+	<div class="box">
+   	  <a class="a-block" target="_blank" href="#"><img src="../images/7_01.jpg"></a>
+      <a class="a-block" target="_blank" href="#"><img src="../images/7_02.jpg"></a>
+      <a class="a-block" target="_blank" href="#"><img src="../images/7_03.jpg"></a>
+      <a class="a-block" target="_blank" href="#"><img src="../images/7_04.jpg"></a>
+    </div>
+</div>
+<div style="background:url(../images/bg_08.jpg) center no-repeat; text-align:center;height:152px;"><div class="box"><a class="a-block" target="_blank" href="#"><img src="../images/8.jpg" id="woman"></a></div></div>
+<div style="background:url(../images/bg_09.jpg) center no-repeat; text-align:center;height:558px;">
+	<div class="box">
+   	  <a class="a-block" target="_blank" href="#"><img src="../images/9_01.jpg"></a>
+      <a class="a-block" target="_blank" href="#"><img src="../images/9_02.jpg"></a>
+      <a class="a-block" target="_blank" href="#"><img src="../images/9_03.jpg"></a>
+    </div>
+</div>
+<div style="background:url(../images/bg_10.jpg) center no-repeat; text-align:center;height:433px;">
+	<div class="box">
+   	  <a class="a-block" target="_blank" href="#"><img src="../images/10_01.jpg"></a>
+      <a class="a-block" target="_blank" href="#"><img src="../images/10_02.jpg"></a>
+      <a class="a-block" target="_blank" href="#"><img src="../images/10_03.jpg"></a>
+      <a class="a-block" target="_blank" href="#"><img src="../images/10_04.jpg"></a>
+    </div>
+</div>
+<div style="background:url(../images/bg_11.jpg) center no-repeat; text-align:center;height:517px;">
+	<div class="box">
+   	  <a class="a-block" target="_blank" href="#"><img src="../images/11_01.jpg"></a>
+      <a class="a-block" target="_blank" href="#"><img src="../images/11_02.jpg"></a>
+      <a class="a-block" target="_blank" href="#"><img src="../images/11_03.jpg"></a>
+      <a class="a-block" target="_blank" href="#"><img src="../images/11_04.jpg"></a>
+    </div>
+</div>
+<div style="background:url(../images/bg_12.jpg) center no-repeat; text-align:center;height:160px;"><div class="box"><a class="a-block" target="_blank" href="#"><img src="../images/12.jpg" id="cxcz"></a></div></div>
+<div style="background:url(../images/bg_13.jpg) center no-repeat; text-align:center;height:513px;">
+	<div class="box">
+   	  <a class="a-block" target="_blank" href="#"></a><img src="../images/13_01.jpg"></a>
+      <a class="a-block" target="_blank" href="http://www.no5.com.cn/brandstore-954-378-0-1.html"><img src="../images/13_02.jpg"></a>
+      <a class="a-block" target="_blank" href="#"><img src="../images/13_03.jpg"></a>
+    </div>
+</div>
+<div style="background:url(../images/bg_14.jpg) center no-repeat; text-align:center;height:443px;">
+	<div class="box">
+   	  <a class="a-block" target="_blank" href="#"><img src="../images/14_01.jpg"></a>
+      <a class="a-block" target="_blank" href="#"><img src="../images/14_02.jpg"></a>
+      <a class="a-block" target="_blank" href="#"><img src="../images/14_03.jpg"></a>
+    </div>
+</div>
+<div style="background:url(../images/bg_15.jpg) center no-repeat; text-align:center;height:468px;">
+	<div class="box">
+   	  <a class="a-block" target="_blank" href="#"><img src="../images/15_01.jpg"></a>
+      <a class="a-block" target="_blank" href="#"><img src="../images/15_02.jpg"></a>
+      <a class="a-block" target="_blank" href="#"><img src="../images/15_03.jpg"></a>
+    </div>
+</div>
+<div style="background:url(../images/bg_16.jpg) center no-repeat; text-align:center;height:231px;"><div class="box"><a class="a-block" target="_blank" href="http://www.no5.com.cn/list-312-0-0-0-1.html"><img src="../images/16.jpg" id="man"></a></div></div>
+<div style="background:url(../images/bg_17.jpg) center no-repeat; text-align:center;height:602px;">
+	<div class="box">
+   	  <a class="a-block" target="_blank" href="#"><img src="../images/17_01.jpg"></a>
+      <a class="a-block" target="_blank" href="#"><img src="../images/17_02.jpg"></a>
+      <a class="a-block" target="_blank" href="#"><img src="../images/17_03.jpg"></a>
+    </div>
+</div>
+<div style="background:url(../images/bg_18.jpg) center no-repeat; text-align:center;height:600px;">
+	<div class="box">
+   	  <a class="a-block" target="_blank" href="#"><img src="../images/18_01.jpg"></a>
+      <a class="a-block" target="_blank" href="#"><img src="../images/18_02.jpg"></a>
+      <a class="a-block" target="_blank" href="#"><img src="../images/18_03.jpg"></a>
+    </div>
+</div>
+<div style="background:url(../images/bg_19.jpg) center no-repeat; text-align:center;height:481px;">
+	<div class="box">
+   	  <a class="a-block" target="_blank" href="#"><img src="../images/19_01.jpg"></a>
+      <a class="a-block" target="_blank" href="#"><img src="../images/19_02.jpg"></a>
+      <a class="a-block" target="_blank" href="#"><img src="../images/19_03.jpg"></a>
+      <a class="a-block" target="_blank" href="#"><img src="../images/19_04.jpg"></a>
+    </div>
+</div>
+<div style="background:url(../images/bg_20.jpg) center no-repeat; text-align:center;height:268px;"><div class="box"><img src="../images/20.jpg"></div></div>
+<img real-url="http://photo.no5.com.cn/publish/qx/nav.png" usemap="#Map" class="nav" border="0">
+</div>
+
+<script type="text/javascript">    
+    (function() {        
+        var elems = document.getElementsByTagName("div");
+        var cnt = elems.length;
+        for (var i = 0; i < cnt; i++) {
+            if (elems[i].getAttribute("title")) {
+                document.title = elems[i].getAttribute("title");
+                break;
+            }
+        }
+    })();
+</script>
+
+
+<!--bottom部分-->
+<div class="bottom">
+	<div class="bot">
+		<div class="bleft">
+			<div class="tel">
+				<p id="ptel">400-883-6655</p>
+				<p id="ptime">9:00-18:00</p>
+			</div>
+			<p class="weibo">
+				<span>新浪官方微博</span>
+				<a href="#"><img src="../images/guanzhu.jpg" /></a>
+			</p>
+			<p class="ding">
+				<input type="text" value="请输入您的Email地址" />
+				<a href="#"><img src="../images/ding.jpg" /></a>
+			</p>
+			<p class="ptxt">最新美容资讯，新品及促销信息</p>
+		</div>
+		<dl>
+			<dt><a href="#">如何订购</a></dt>
+			<dd><a href="#">网上下单</a></dd>
+			<dd><a href="#">电话订购</a></dd>
+			<dd><a href="#">邮寄订购</a></dd>
+			<dd><a href="#">传真订购</a></dd>
+		</dl><dl>
+			<dt><a href="#">如何送货</a></dt>
+			<dd><a href="#">送货上门</a></dd>
+			<dd><a href="#">快递</a></dd>
+			<dd><a href="#">邮政EMS</a></dd>
+		</dl>
+		<dl>
+			<dt><a href="#">如何付款</a></dt>
+			<dd><a href="#">货到付款</a></dd>
+			<dd><a href="#">在线支付</a></dd>
+			<dd><a href="#">邮政汇款</a></dd>
+			<dd><a href="#">银行汇款</a></dd>
+		</dl>
+		<dl>
+			<dt><a href="#">订单查询</a></dt>
+			<dd><a href="#">订单状态</a></dd>
+			<dd><a href="#">查询订单</a></dd>
+			<dd><a href="#">无效订单</a></dd>
+			<dd><a href="#">支付失败</a></dd>
+			<dd><a href="#">缺货登记</a></dd>
+		</dl>
+		<dl>
+			<dt><a href="#">会员服务</a></dt>
+			<dd><a href="#">N°5会员级别</a></dd>
+			<dd><a href="#">N°5购物保障</a></dd>
+			<dd><a href="#">N°5贴心服务</a></dd>
+			<dd><a href="#">账户积分使用</a></dd>
+		</dl>
+		<dl>
+			<dt><a href="#">联系我们</a></dt>
+			<dd><a href="#">关于N°5</a></dd>
+			<dd><a href="#">加入N°5</a></dd>
+			<dd><a href="#">团购加盟</a></dd>
+			<dd><a href="#">网站加盟</a></dd>
+			<dd><a href="#">投诉建议</a></dd>
+		</dl>
+		<dl class="dllast">
+			<dt><img src="../images/2wm.jpg" /></dt>
+			<dd><img src="../images/ss.jpg" /></dd>
+		</dl>
+	</div>
+</div>
+<!--bottom部分结束-->
+
+<!--foot部分-->
+<div class="foot">
+	<div class="footer">
+		<dl>
+			<dt><img src="../images/f_04.jpg" /></dt>
+			<dd>足不出户 享受网购乐趣</dd>
+			<dd>北京城区次日送达</dd>
+		</dl>
+		<dl>
+			<dt><img src="../images/f_05.jpg" /></dt>
+			<dd>品质保证</dd>
+			<dd>15天不满意退换货</dd>
+		</dl>
+		<dl>
+			<dt><img src="../images/f_06.jpg" /></dt>
+			<dd>价格实惠 购物有积分</dd>
+			<dd>积分抵现金</dd>
+		</dl>
+		<dl>
+			<dt><img src="../images/f_07.jpg" /></dt>
+			<dd>1800多城市送货上门</dd>
+			<dd>货到付款</dd>
+		</dl>
+	</div>
+	<div class="copyright">Copyright @ 2001-2012 N°5.com.cn All Rights Reserved 京ICP备11045170号</div>
+</div>
+
+	</body>
+</html>
